@@ -1,0 +1,37 @@
+[
+  {
+    "id": "doc1",
+    "title": "Leave Policy",
+    "content": "Employees are entitled to 18 days of paid annual leave per year. Unused leave can be carried forward to the next year up to a maximum of 10 days. Employees must apply for leave through the HR portal at least 2 days in advance, except in emergencies."
+  },
+  {
+    "id": "doc2",
+    "title": "Sick Leave Policy",
+    "content": "Employees are entitled to 10 sick leave days per year. If sick leave exceeds 3 consecutive days, the employee must submit a medical certificate. Unused sick leave cannot be carried forward to the next year."
+  },
+  {
+    "id": "doc3",
+    "title": "Work From Home Policy",
+    "content": "Employees are allowed to work from home up to 2 days per week with manager approval. Employees must remain available during core working hours (10 AM to 4 PM). Work-from-home requests must be submitted through the HR system."
+  },
+  {
+    "id": "doc4",
+    "title": "Travel Reimbursement Policy",
+    "content": "Employees traveling for business purposes can claim reimbursement for airfare (economy class), hotel accommodation, local transportation, and meals during travel. All reimbursement claims must be submitted within 7 days of travel completion with valid receipts."
+  },
+  {
+    "id": "doc5",
+    "title": "Employee Benefits",
+    "content": "Full-time employees are eligible for the following benefits: health insurance coverage, annual performance bonus, provident fund contributions, and paid parental leave. Employees become eligible for benefits after completing 3 months of probation."
+  },
+  {
+    "id": "doc6",
+    "title": "Working Hours Policy",
+    "content": "The standard working hours are 9:00 AM to 6:00 PM, Monday to Friday. Employees are expected to complete 40 hours per week. Late arrivals exceeding 3 times per month may result in HR review."
+  },
+  {
+    "id": "doc7",
+    "title": "Code of Conduct",
+    "content": "Employees must maintain professional behavior at the workplace. Harassment, discrimination, and unethical behavior will result in disciplinary action. Employees must comply with company policies and maintain confidentiality of company data."
+  }
+]

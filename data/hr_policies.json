@@ -1,0 +1,137 @@
+[
+  {
+    "id": "doc1",
+    "title": "Annual Leave Policy",
+    "content": "Employees receive 18 paid annual leave days per calendar year. Unused leave can be carried forward up to 10 days. Leave requests must be applied 2 days in advance. Manager approval required."
+  },
+  {
+    "id": "doc2",
+    "title": "Sick Leave Policy",
+    "content": "Employees receive 10 sick leave days annually. Medical certificate required if leave exceeds 3 consecutive days. Unused sick leave expires yearly."
+  },
+  {
+    "id": "doc3",
+    "title": "Casual Leave Policy",
+    "content": "Employees are allowed 6 casual leave days yearly. Casual leave cannot be carried forward. Maximum 2 casual leaves can be taken continuously."
+  },
+  {
+    "id": "doc4",
+    "title": "Work From Home Policy",
+    "content": "Employees may work from home 2 days per week. Approval from reporting manager required. Must be online from 10 AM to 4 PM."
+  },
+  {
+    "id": "doc5",
+    "title": "Probation Policy",
+    "content": "New employees undergo 3 months probation. Performance review conducted after probation. Benefits activate after confirmation."
+  },
+  {
+    "id": "doc6",
+    "title": "Salary Policy",
+    "content": "Salary is credited on the last working day of every month. Payslips available in HR portal."
+  },
+  {
+    "id": "doc7",
+    "title": "Working Hours",
+    "content": "Office timings: 9:00 AM to 6:00 PM, Monday to Friday. Total weekly hours = 40."
+  },
+  {
+    "id": "doc8",
+    "title": "Travel Reimbursement",
+    "content": "Eligible expenses include airfare (economy), hotel, meals, and local transport. Claims must be submitted within 7 days with bills."
+  },
+  {
+    "id": "doc9",
+    "title": "Employee Benefits",
+    "content": "Employees are eligible after probation for health insurance, provident fund, bonus, and paid parental leave."
+  },
+  {
+    "id": "doc10",
+    "title": "Notice Period",
+    "content": "Employees must serve a 30 days notice period. Buyout is subject to approval."
+  },
+  {
+    "id": "doc11",
+    "title": "Code of Conduct",
+    "content": "No harassment, discrimination, or data misuse is allowed. Violations lead to disciplinary action."
+  },
+  {
+    "id": "doc12",
+    "title": "Attendance Policy",
+    "content": "Employees must mark attendance daily. Late login beyond 15 minutes is considered late. Three late attendances may lead to a warning. Missed attendance must be regularized within 2 days."
+  },
+  {
+    "id": "doc13",
+    "title": "Overtime Policy",
+    "content": "Overtime requires manager approval. Only approved hours are counted. Not applicable for managerial roles."
+  },
+  {
+    "id": "doc14",
+    "title": "Public Holiday Policy",
+    "content": "Company observes national and regional holidays. Holiday calendar is shared yearly. Working on holidays may provide compensatory leave."
+  },
+  {
+    "id": "doc15",
+    "title": "Maternity Leave Policy",
+    "content": "Eligible employees get 26 weeks of paid leave. Medical documents are required. Extra unpaid leave may be allowed."
+  },
+  {
+    "id": "doc16",
+    "title": "Paternity Leave Policy",
+    "content": "Male employees get 5 days leave. Leave must be used within 30 days of childbirth."
+  },
+  {
+    "id": "doc17",
+    "title": "Asset Policy",
+    "content": "Employees must handle company devices responsibly. Loss or damage must be reported. Assets must be returned during exit."
+  },
+  {
+    "id": "doc18",
+    "title": "Internet Reimbursement Policy",
+    "content": "Remote employees can claim internet bills up to $30 per month. Bills must be submitted in the HR portal."
+  },
+  {
+    "id": "doc19",
+    "title": "Learning and Development Policy",
+    "content": "Employees can take internal training. Certifications may be reimbursed. This is used in performance evaluation."
+  },
+  {
+    "id": "doc20",
+    "title": "Performance Appraisal Policy",
+    "content": "Reviews happen annually based on goals and contributions. Bonus depends on performance."
+  },
+  {
+    "id": "doc21",
+    "title": "Dress Code Policy",
+    "content": "Professional attire is required. Casual wear is allowed on Fridays. Improper dress may lead to notice."
+  },
+  {
+    "id": "doc22",
+    "title": "Data Security Policy",
+    "content": "Employees must not share passwords or confidential data. Unauthorized copying is prohibited. Security issues must be reported immediately."
+  },
+  {
+    "id": "doc23",
+    "title": "Exit Policy",
+    "content": "Knowledge transfer is required. All assets must be returned. Final settlement is done after clearance."
+  },
+  {
+    "id": "doc24",
+    "title": "Payroll Policy",
+    "content": "Salary is processed monthly. Tax is deducted as per rules. Bank details must be updated."
+  },
+  {
+    "id": "doc25",
+    "title": "Remote Work Policy",
+    "content": "Stable internet is required. Employees must be available during work hours. Regular communication is expected."
+  },
+  {
+    "id": "doc26",
+    "title": "Internal Transfer Policy",
+    "content": "Employees are eligible for internal transfer after 12 months based on performance and business needs."
+  },
+  {
+    "id": "doc27",
+    "title": "Grievance Policy",
+    "content": "Employees can raise concerns to HR confidentially. All complaints are investigated fairly."
+  }
+]
