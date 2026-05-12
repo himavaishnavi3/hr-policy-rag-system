@@ -1,13 +1,15 @@
 """
 STEP 4 — Flask Deployment
-Kapil IT Skill HR Assistant
+Kit Skill Hub HR Assistant
 Modern UI Features:
 ✔ Dark / Light Toggle
-✔ Settings Side Panel (NEW)
 ✔ New Chat
 ✔ Search Chats
 ✔ Recent Chats
-✔ Login / Logout Bottom
+✔ Login / Logout
+✔ Modern Popup Notifications
+✔ Logout Screen
+✔ White Settings Icon
 """
 
 import os
@@ -43,14 +45,18 @@ print("[Flask] Ready ✅")
 # ---------------------------------------------------
 
 HTML_UI = r"""
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Kapil IT Skill</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Kit Skill Hub</title>
 
 <style>
 
@@ -105,19 +111,33 @@ body.light .sidebar{
   border-right:1px solid #d1d5db;
 }
 
-/* LOGO */
+/* TITLE SECTION */
 
-.logo{
+.logo-section{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:30px;
+  text-align:center;
+}
+
+/* LOGO TEXT */
+
+.logo-text{
   font-size:2rem;
   font-weight:700;
   color:#38bdf8;
+  line-height:1.1;
 }
 
+/* SUBTITLE */
+
 .subtitle{
-  margin-top:5px;
-  margin-bottom:25px;
+  margin-top:8px;
   color:#94a3b8;
   font-size:14px;
+  text-align:center;
 }
 
 /* BUTTONS */
@@ -129,6 +149,7 @@ body.light .sidebar{
   cursor:pointer;
   font-size:15px;
   transition:0.2s;
+  width:100%;
 }
 
 .side-btn:hover{
@@ -150,6 +171,7 @@ body.light .sidebar{
   background:transparent;
   border:1px solid #ef4444;
   color:#ef4444;
+  margin-top:12px;
 }
 
 body.light .secondary{
@@ -211,17 +233,6 @@ body.light .history-item{
   color:white;
 }
 
-/* LOGIN LOGOUT */
-
-.bottom-buttons{
-  margin-top:auto;
-  padding-top:20px;
-}
-
-.logout{
-  margin-top:12px;
-}
-
 /* MAIN */
 
 .main{
@@ -269,24 +280,27 @@ body.light .topbar{
   font-size:14px;
 }
 
-/* SETTINGS ICON */
+/* SETTINGS BUTTON */
 
-.settings-icon{
+.settings-btn{
+  background:#2563eb;
+  border:none;
   width:42px;
   height:42px;
-  border:none;
-  border-radius:50%;
-  background:#2563eb;
+  border-radius:12px;
   color:white;
   font-size:18px;
   cursor:pointer;
-  transition:0.25s;
+  transition:.3s;
 }
 
-.settings-icon:hover{
+.settings-btn:hover{
   background:#1d4ed8;
   transform:rotate(90deg);
 }
+
+/* THEME TOGGLE */
+
 .theme-toggle{
   display:flex;
   align-items:center;
@@ -427,175 +441,109 @@ body.light .input-area input{
   background:#1d4ed8;
 }
 
-/* NEW SETTINGS SIDE PANEL */
+/* CUSTOM POPUP */
 
-.settings-panel{
+.custom-toast{
   position:fixed;
-  top:0;
-  right:-420px;
-  width:420px;
-  height:100%;
-  z-index:1000;
-  transition:.35s ease;
-  padding:28px;
-  box-shadow:-10px 0 30px rgba(0,0,0,.25);
+  top:30px;
+  right:30px;
+  z-index:9999;
+  animation:slideIn .3s ease;
 }
 
-.settings-panel.open{
-  right:0;
-}
-
-body.dark .settings-panel{
-  background:#0b1220;
-  color:white;
-}
-
-body.light .settings-panel{
+.toast-content{
   background:white;
   color:black;
-}
-
-.settings-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.settings-title{
-  font-size:26px;
-  font-weight:700;
-}
-
-.close-settings{
-  width:42px;
-  height:42px;
-  border:none;
-  border-radius:50%;
-  background:#ef4444;
-  color:white;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.setting-card{
-  padding:18px;
+  padding:20px 24px;
   border-radius:16px;
-  margin-bottom:18px;
-}
-
-body.dark .setting-card{
-  background:#111827;
-}
-
-body.light .setting-card{
-  background:#f1f5f9;
-}
-
-.setting-row{
+  min-width:280px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:18px;
+  justify-content:space-between;
+  gap:20px;
+  font-size:15px;
+  font-weight:500;
 }
 
-.setting-row:last-child{
-  margin-bottom:0;
+body.dark .toast-content{
+  background:#1e293b;
+  color:white;
 }
 
-/* OVERLAY */
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  z-index:999;
-}
-
-.overlay.show{
-  display:block;
-}
-
-/* SCROLLBAR */
-
-::-webkit-scrollbar{
-  width:6px;
-}
-
-::-webkit-scrollbar-thumb{
-  background:#475569;
+.toast-content button{
+  background:#2563eb;
+  border:none;
+  color:white;
+  padding:10px 18px;
   border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+@keyframes slideIn{
+  from{
+    opacity:0;
+    transform:translateX(100px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
 }
 
 </style>
+
 </head>
+
 <body class="dark">
 
-<div class="overlay" id="overlay" onclick="closeSettings()"></div>
-<div class="settings-panel" id="settingsPanel">
-  <div class="settings-header">
-    <div class="settings-title">⚙️ Settings</div>
-    <button class="close-settings" onclick="closeSettings()">✕</button>
-  </div>
-
-  <div class="setting-card">
-    <div class="setting-row">
-      <span>Dark / Light Mode</span>
-      <label class="switch">
-        <input type="checkbox" id="panelTheme" onchange="toggleModeFromPanel()">
-        <span class="slider"></span>
-      </label>
-    </div>
-  </div>
-
-  <div class="setting-card">
-    <div class="setting-row">
-      <span>Notifications</span>
-      <input type="checkbox" checked>
-    </div>
-
-    <div class="setting-row">
-      <span>Privacy Mode</span>
-      <input type="checkbox">
-    </div>
-
-    <div class="setting-row">
-      <span>Account</span>
-      <button class="send-btn" style="padding:10px 18px;">Manage</button>
-    </div>
-  </div>
-</div>
 <!-- SIDEBAR -->
 
 <div class="sidebar">
 
-  <div class="logo">💼 Kapil IT Skill</div>
+  <!-- TITLE -->
 
-  <div class="subtitle">
-    Smart HR AI Assistant
+  <div class="logo-section">
+
+    <div class="logo-text">
+      Kit Skill Hub
+    </div>
+
+    <div class="subtitle">
+      Smart HR AI Assistant
+    </div>
+
   </div>
+
+  <!-- NEW CHAT -->
 
   <button class="side-btn primary"
           onclick="newChat()">
-    ➕ New Chat
+    <span style="color:white;">➕</span> New Chat
   </button>
 
-  <input
-    type="text"
-    id="searchChat"
-    class="search-box"
-    placeholder="🔍 Search chats..."
-    onkeyup="searchHistory()"
-  >
+  <!-- SEARCH -->
+
+  <input type="text"
+         id="searchChat"
+         class="search-box"
+         placeholder="🔍 Search chats..."
+         onkeyup="searchHistory()">
+
+  <!-- HISTORY -->
 
   <div class="history-title">
     🕘 Recent Chats
   </div>
 
-  <div class="history" id="history"></div>
+  <div class="history"
+       id="history">
+  </div>
 
-  <div class="bottom-buttons">
+  <!-- LOGIN LOGOUT -->
+
+  <div style="margin-top:auto; padding-top:20px;">
 
     <button class="side-btn secondary"
             onclick="login()">
@@ -615,9 +563,13 @@ body.light .setting-card{
 
 <div class="main">
 
+  <!-- TOPBAR -->
+
   <div class="topbar">
 
-    <h2>Kapil IT Skill - HR Assistant</h2>
+    <h2>
+      Kit Skill Hub - HR Assistant
+    </h2>
 
     <div class="topbar-right">
 
@@ -626,20 +578,24 @@ body.light .setting-card{
         <span>🌙</span>
 
         <label class="switch">
+
           <input type="checkbox"
                  id="modeToggle"
                  onchange="toggleMode()">
+
           <span class="slider"></span>
+
         </label>
 
         <span>☀️</span>
 
       </div>
 
-      <div class="status">● AI Online</div>
+      <div class="status">
+        ● AI Online
+      </div>
 
-      <button class="settings-icon"
-              onclick="openSettings()">
+      <button class="settings-btn">
         ⚙️
       </button>
 
@@ -647,31 +603,40 @@ body.light .setting-card{
 
   </div>
 
-  <div class="chat-container" id="chat">
+  <!-- CHAT -->
+
+  <div class="chat-container"
+       id="chat">
 
     <div class="message bot">
-      👋 Hello! Welcome to Kapil IT Skill HR Assistant.
+
+      👋 Hello! Welcome to Kit Skill Hub HR Assistant.
+
       <br><br>
+
       Ask me anything about:
+
       <br><br>
+
       • HR Policies<br>
       • Leave Rules<br>
       • Attendance<br>
       • Holidays<br>
       • Salary<br>
       • Work From Home
+
     </div>
 
   </div>
 
+  <!-- INPUT -->
+
   <div class="input-area">
 
-    <input
-      type="text"
-      id="q"
-      placeholder="Ask your HR question..."
-      onkeydown="if(event.key==='Enter') askQuestion()"
-    >
+    <input type="text"
+           id="q"
+           placeholder="Ask your HR question..."
+           onkeydown="if(event.key==='Enter') askQuestion()">
 
     <button class="send-btn"
             onclick="askQuestion()">
@@ -686,39 +651,62 @@ body.light .setting-card{
 
 let historyData=[];
 
+/* ADD MESSAGE */
+
 function addMessage(text,type){
+
   const msg=document.createElement("div");
+
   msg.className="message "+type;
+
   msg.innerHTML=text;
+
   document.getElementById("chat").appendChild(msg);
-  msg.scrollIntoView({behavior:"smooth"});
+
+  msg.scrollIntoView({
+    behavior:"smooth"
+  });
 }
+
+/* ASK QUESTION */
 
 async function askQuestion(){
 
   const input=document.getElementById("q");
+
   const query=input.value.trim();
 
   if(!query) return;
 
   addMessage(query,"user");
+
   saveHistory(query);
 
   input.value="";
 
   const typing=document.createElement("div");
+
   typing.className="message bot";
+
   typing.innerHTML="Typing...";
+
   document.getElementById("chat").appendChild(typing);
 
   try{
+
     const response=await fetch('/ask',{
+
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+
+      headers:{
+        'Content-Type':'application/json'
+      },
+
       body:JSON.stringify({
         query:query,
         top_k:3
       })
+
     });
 
     const data=await response.json();
@@ -729,76 +717,173 @@ async function askQuestion(){
       data.answer || "No response found",
       "bot"
     );
-  }
-  catch(error){
+
+  }catch(error){
+
     typing.remove();
-    addMessage("Error: "+error.message,"bot");
+
+    addMessage(
+      "Error: "+error.message,
+      "bot"
+    );
   }
 }
 
+/* NEW CHAT */
+
 function newChat(){
+
   document.getElementById("chat").innerHTML=
-  `<div class="message bot">👋 New chat started successfully!</div>`;
+  `<div class="message bot">
+      👋 New chat started successfully!
+   </div>`;
 }
+
+/* THEME TOGGLE */
 
 function toggleMode(){
 
   const body=document.body;
+
   const toggle=document.getElementById("modeToggle");
-  const panelToggle=document.getElementById("panelTheme");
 
   if(toggle.checked){
+
     body.classList.remove("dark");
     body.classList.add("light");
-    panelToggle.checked=true;
+
   }else{
+
     body.classList.remove("light");
     body.classList.add("dark");
-    panelToggle.checked=false;
   }
 }
 
-function toggleModeFromPanel(){
-  const panel=document.getElementById("panelTheme");
-  const main=document.getElementById("modeToggle");
-  main.checked=panel.checked;
-  toggleMode();
+/* CUSTOM POPUP */
+
+function showToast(message){
+
+  const toast=document.createElement("div");
+
+  toast.className="custom-toast";
+
+  toast.innerHTML=`
+
+    <div class="toast-content">
+
+      <span>${message}</span>
+
+      <button onclick="this.parentElement.parentElement.remove()">
+        OK
+      </button>
+
+    </div>
+
+  `;
+
+  document.body.appendChild(toast);
+
+  setTimeout(()=>{
+    if(toast){
+      toast.remove();
+    }
+  },4000);
 }
 
-function openSettings(){
-  document.getElementById("settingsPanel").classList.add("open");
-  document.getElementById("overlay").classList.add("show");
-}
-
-function closeSettings(){
-  document.getElementById("settingsPanel").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
-}
+/* LOGIN */
 
 function login(){
-  alert("Login Successful ✅");
+  showToast("✅ Login Successful");
 }
+
+/* LOGOUT */
 
 function logout(){
-  alert("Logout Successful ✅");
+
+  showToast("✅ Logout Successful");
+
+  setTimeout(()=>{
+
+    document.body.innerHTML=`
+
+      <div style="
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        background:#0f172a;
+        color:white;
+        font-family:'Segoe UI',sans-serif;
+      ">
+
+        <div style="
+          font-size:70px;
+          margin-bottom:20px;
+        ">
+          👋
+        </div>
+
+        <h1 style="
+          font-size:42px;
+          margin-bottom:14px;
+          font-weight:700;
+        ">
+          Logged Out Successfully
+        </h1>
+
+        <p style="
+          font-size:18px;
+          color:#cbd5e1;
+          margin-bottom:35px;
+        ">
+          Thank you for using Kit Skill Hub HR Assistant
+        </p>
+
+        <button onclick="location.reload()"
+                style="
+                  background:#2563eb;
+                  color:white;
+                  border:none;
+                  padding:14px 28px;
+                  border-radius:14px;
+                  font-size:16px;
+                  cursor:pointer;
+                  font-weight:600;
+                ">
+          Login Again
+        </button>
+
+      </div>
+
+    `;
+
+  },1200);
 }
 
+/* SAVE HISTORY */
+
 function saveHistory(text){
+
   historyData.push(text);
+
   renderHistory();
 }
+
+/* RENDER HISTORY */
 
 function renderHistory(){
 
   const history=document.getElementById("history");
-  history.innerHTML="";
 
-  history.slice;
+  history.innerHTML="";
 
   historyData.slice().reverse().forEach(item=>{
 
     const div=document.createElement("div");
+
     div.className="history-item";
+
     div.innerText=item;
 
     div.onclick=()=>{
@@ -810,6 +895,8 @@ function renderHistory(){
   });
 }
 
+/* SEARCH HISTORY */
+
 function searchHistory(){
 
   const value=document
@@ -820,12 +907,13 @@ function searchHistory(){
   const items=document.querySelectorAll(".history-item");
 
   items.forEach(item=>{
+
     item.style.display=
       item.innerText.toLowerCase().includes(value)
       ? "block"
       : "none";
-  });
 
+  });
 }
 
 </script>
@@ -834,6 +922,7 @@ function searchHistory(){
 </html>
 
 """
+
 # ---------------------------------------------------
 # ROUTES
 # ---------------------------------------------------
@@ -875,7 +964,7 @@ def health():
 
     return jsonify({
         "status": "ok",
-        "model": "Kapil IT Skill HR Assistant"
+        "model": "Kit Skill Hub HR Assistant"
     })
 
 
@@ -886,8 +975,11 @@ def health():
 if __name__ == "__main__":
 
     print("\n" + "=" * 60)
-    print(" Kapil IT Skill — HR Assistant ")
+
+    print(" Kit Skill Hub — HR Assistant ")
+
     print(" Open Browser → http://127.0.0.1:5000 ")
+
     print("=" * 60 + "\n")
 
     app.run(
